@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícias & Updates | AvaLab</title>
+
+    <!-- ÍCONE NA ABA DO NAVEGADOR (.ICO) -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- PRÉVIA DO LINK (WhatsApp, Discord, Redes Sociais) -->
+    <meta property="og:site_name" content="AvaLab">
+    <meta property="og:title" content="Notícias & Updates | AvaLab">
+    <meta property="og:description" content="Linha do tempo oficial dos testes, aprimoramentos e notas de versão do ecossistema AvaLab.">
+    <meta property="og:url" content="https://avalab.work/updates.html">
+    <meta property="og:image" content="https://avalab.work/favicon.ico">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos do Menu Responsivo */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(10, 15, 22, 0.95);
+            border-bottom: 1px solid #243b53;
+            position: relative;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #00e5ff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsividade para Celulares */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 15, 22, 0.98);
+                border-bottom: 1px solid #243b53;
+                padding: 20px 0;
+                gap: 16px;
+                text-align: center;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+                z-index: 1000;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        .updates-container {
+            padding: 40px 8%;
+            max-width: 1050px;
+            margin: auto;
+            text-align: left;
+        }
+        .page-header {
+            margin-bottom: 30px;
+        }
+        .page-header h1 {
+            color: #00e5ff;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .page-header p {
+            color: #8da0b3;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Estrutura da Planilha / Tabela */
+        .updates-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(15, 23, 32, 0.85);
+            border: 1px solid #243b53;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .table-header {
+            display: grid;
+            grid-template-columns: 110px 100px 110px 1fr 40px;
+            padding: 12px 18px;
+            background: #0d141e;
+            border-bottom: 1px solid #243b53;
+            font-size: 0.82rem;
+            font-weight: bold;
+            color: #8da0b3;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Linha Expansível */
+        .update-entry {
+            border-bottom: 1px solid rgba(36, 59, 83, 0.5);
+        }
+        .update-entry:last-child {
+            border-bottom: none;
+        }
+        .update-summary {
+            display: grid;
+            grid-template-columns: 110px 100px 110px 1fr 40px;
+            align-items: center;
+            padding: 14px 18px;
+            cursor: pointer;
+            transition: background 0.2s;
+            user-select: none;
+        }
+        .update-summary:hover {
+            background: rgba(0, 229, 255, 0.05);
+        }
+
+        /* Tags de Produto */
+        .badge-prod {
+            font-size: 0.72rem;
+            font-weight: bold;
+            padding: 4px 0;
+            width: 88px;
+            text-align: center;
+            border-radius: 4px;
+            text-transform: uppercase;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+        .prod-site    { background: #ffd600; color: #000000; }
+        .prod-predator { background: #ff3b30; color: #ffffff; }
+        .prod-alien    { background: #00ff7f; color: #000000; }
+        .prod-launcher { background: #00e5ff; color: #000000; }
+
+        /* Tags de Status / Ação */
+        .badge-status {
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 3px 0;
+            width: 76px;
+            text-align: center;
+            border-radius: 4px;
+            text-transform: uppercase;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+        .status-novo   { background: #9d4edd; color: #ffffff; }
+        .status-update { background: #2a9d8f; color: #ffffff; }
+        .status-teste  { background: #e76f51; color: #ffffff; }
+
+        .update-date {
+            font-size: 0.85rem;
+            color: #8da0b3;
+        }
+        .update-title {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .update-arrow {
+            color: #00e5ff;
+            text-align: right;
+            transition: transform 0.3s ease;
+        }
+
+        /* Conteúdo Expansível */
+        .update-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.3s ease;
+            background: rgba(8, 12, 16, 0.95);
+            padding: 0 18px;
+        }
+        .update-detail p {
+            margin: 0;
+            padding: 14px 0 6px 0;
+            font-size: 0.88rem;
+            color: #b0c4de;
+            line-height: 1.6;
+            border-top: 1px dashed #243b53;
+        }
+        .update-detail ul {
+            margin: 0 0 14px 20px;
+            padding: 0;
+            color: #8da0b3;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Estado Aberto */
+        .update-entry.open .update-arrow {
+            transform: rotate(180deg);
+        }
+        .update-entry.open .update-detail {
+            max-height: 420px;
+            padding: 0 18px;
+        }
+
+        @media (max-width: 720px) {
+            .table-header {
+                display: none;
+            }
+            .update-summary {
+                grid-template-columns: auto auto 1fr auto;
+                gap: 8px;
+            }
+            .update-summary .update-date {
+                grid-column: 1 / 4;
+            }
+            .update-summary .update-title {
+                grid-column: 1 / 4;
+                font-size: 0.9rem;
+            }
+            .update-summary .update-arrow {
+                grid-column: 4 / 5;
+                grid-row: 1 / 3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-text">Ava<span>Lab</span></div>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html" style="color:white; text-decoration:none;" onclick="toggleMenu()"><i class="fa-solid fa-arrow-left"></i> Home</a>
+            <a href="https://www.youtube.com/@AvaLabSoft" target="_blank" style="color:#ff3355; text-decoration:none;">
+                <i class="fa-brands fa-youtube"></i> YouTube
+            </a>
+            <a href="https://discord.gg/MEAJnDCHj" target="_blank" style="color:#5865F2; text-decoration:none;">
+                <i class="fa-brands fa-discord"></i> Comunidade
+            </a>
+            <a href="javascript:void(0)" onclick="abrirSuporte(); toggleMenu();" style="color:var(--cyan-accent, #00e5ff); text-decoration:none; cursor:pointer;">
+                <i class="fa-solid fa-headset"></i> Atendimento Online
+            </a>
+        </nav>
+    </header>
+
+    <main class="updates-container">
+        <div class="page-header">
+            <h1><i class="fa-solid fa-list-check"></i> Histórico de Desenvolvimento & Updates</h1>
+            <p>Linha do tempo oficial dos testes, aprimoramentos e notas de versão do ecossistema AvaLab. Clique em qualquer linha para expandir.</p>
+        </div>
+
+        <div class="updates-table">
+            <div class="table-header">
+                <div>Produto</div>
+                <div>Status</div>
+                <div>Data</div>
+                <div>Título</div>
+                <div></div>
+            </div>
+
+            <!-- 02/09: Nova Função de Contador de Potes -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-predator">PREDATOR</span></div>
+                    <div><span class="badge-status status-novo">NOVO</span></div>
+                    <div class="update-date">02/09/2026</div>
+                    <div class="update-title">Predator Assistant: Nova Função de Contador de Potes & Projeção</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        Implementação do painel avançado de controle e rastreamento de poções:
+                    </p>
+                    <ul>
+                        <li>Monitoramento em tempo real do consumo por minuto, blocos de 30 minutos e por hora.</li>
+                        <li>Planejador de hunt integrado por tempo-alvo ou capacidade total de poções na bagagem.</li>
+                        <li>Sistema de auto-teleporte programado por atalho (<kbd>Shift + Alt + 5</kbd>) com desligamento automático seguro.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 01/09: Novo AimTarget Beta no Autoclick -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-alien">ALIEN</span></div>
+                    <div><span class="badge-status status-teste">TESTE</span></div>
+                    <div class="update-date">01/09/2026</div>
+                    <div class="update-title">Alien & Predator: Novo AimTarget Beta Integrado ao Autoclicker</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        Evolução inteligente no direcionamento de mira e disparos:
+                    </p>
+                    <ul>
+                        <li>Módulo AimTarget em fase beta para detecção e foco automático de alvos.</li>
+                        <li>Otimização de rotinas de combate combinadas com o sistema de movimentação circular e orgânica.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 31/08: Atualizações de Stealth -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-predator">PREDATOR</span></div>
+                    <div><span class="badge-status status-update">UPDATE</span></div>
+                    <div class="update-date">31/08/2026</div>
+                    <div class="update-title">Alien & Predator: Aprimoramentos de Stealth e Camada de Segurança</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        Atualizações focadas em discrição operacional e telemetria:
+                    </p>
+                    <ul>
+                        <li>Refinamento de desvios e delays humanizados para simulação orgânica prolongada.</li>
+                        <li>Proteções adicionais de mascaramento e isolamento de processos em nível de sistema.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 28/08: Versão v2 do Coletor de Ouro Beta -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-alien">ALIEN</span></div>
+                    <div><span class="badge-status status-teste">TESTE</span></div>
+                    <div class="update-date">28/08/2026</div>
+                    <div class="update-title">Alien Assistant: Lançamento da Versão v2 do Coletor de Ouro (BETA)</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        Grande atualização na engine de varredura e recolhimento de itens:
+                    </p>
+                    <ul>
+                        <li>Nova v2 do sistema de detecção visual de ouro no chão com maior precisão e alcance ajustável.</li>
+                        <li>Redução drástica de falsos positivos e melhor fluidez no retorno automático ao combate após a coleta.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 26/08: Central de Atendimento Integrada -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-site">PORTAL</span></div>
+                    <div><span class="badge-status status-novo">NOVO</span></div>
+                    <div class="update-date">26/08/2026</div>
+                    <div class="update-title">Central de Atendimento: Vendas, Suporte e Dúvidas</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        Integração completa do canal de atendimento unificado:
+                    </p>
+                    <ul>
+                        <li>Triagem direta com categorias exclusivas para <strong>Vendas / Renovação</strong>, <strong>Suporte Técnico / HWID</strong> e <strong>Dúvidas Gerais</strong>.</li>
+                        <li>Canal direto para envio de chamados e mensagens com acompanhamento contínuo.</li>
+                        <li>Sincronização do widget em todas as páginas e navegação do ecossistema AvaLab.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 24/08: Launcher v1.3 -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-launcher">LAUNCHER</span></div>
+                    <div><span class="badge-status status-update">UPDATE</span></div>
+                    <div class="update-date">24/08/2026</div>
+                    <div class="update-title">Launcher v1.3: Central de Licenças e Auto-Update</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        A Central de Comando foi reestruturada para a versão 1.3:
+                    </p>
+                    <ul>
+                        <li>Validador integrado de licença com HWID único por hardware.</li>
+                        <li>Rotina automática de download e substituição silenciosa de arquivos.</li>
+                        <li>Armazenamento seguro e centralizado dos binários no sistema.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 24/08: Predator Hardware -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-predator">PREDATOR</span></div>
+                    <div><span class="badge-status status-novo">NOVO</span></div>
+                    <div class="update-date">24/08/2026</div>
+                    <div class="update-title">Predator Assistant: Edição Hardware Passthrough Revelada</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        Apresentação oficial do Predator Assistant com integração a dispositivo físico dedicado AvaLab:
+                    </p>
+                    <ul>
+                        <li>Arquitetura em nível de hardware com isolamento completo do ambiente operacional.</li>
+                        <li>Execução autônoma, discreta e totalmente não invasiva.</li>
+                        <li>Hardware fornecido e configurado sob demanda exclusivamente pela AvaLab.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 22/08: Launcher v1.2 -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-launcher">LAUNCHER</span></div>
+                    <div><span class="badge-status status-update">UPDATE</span></div>
+                    <div class="update-date">22/08/2026</div>
+                    <div class="update-title">Launcher v1.2: UI Otimizada e Correção de Bugs</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        Atualização de estabilidade e aprimoramento visual:
+                    </p>
+                    <ul>
+                        <li>Refinamento completo da interface gráfica e ajustes de layout.</li>
+                        <li>Correção de pequenos bugs na validação e carregamento de componentes locais.</li>
+                        <li>Melhoria na fluidez e resposta dos menus de navegação.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 20/08: Alien Coletor Beta -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-alien">ALIEN</span></div>
+                    <div><span class="badge-status status-teste">TESTE</span></div>
+                    <div class="update-date">20/08/2026</div>
+                    <div class="update-title">Alien Assistant: Módulo Coletor de Ouro no Chão (BETA)</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        Implementação do sistema inteligente de coleta de recursos:
+                    </p>
+                    <ul>
+                        <li>Recolhimento automatizado no chão com controle de alcance e intervalos configuráveis.</li>
+                        <li>Sincronização dinâmica com combate: pausa o ataque para recolher e retoma a rotação de forma fluida.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 18/08: Launcher v1.1 -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-launcher">LAUNCHER</span></div>
+                    <div><span class="badge-status status-update">UPDATE</span></div>
+                    <div class="update-date">18/08/2026</div>
+                    <div class="update-title">Launcher v1.1: UI Redesenhada e Sistema de Ativação</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        Evolução estrutural do inicializador:
+                    </p>
+                    <ul>
+                        <li>Interface de usuário redesenhada com temática escura de alto contraste.</li>
+                        <li>Adição do módulo de ativação e consulta de status de licença via HWID.</li>
+                        <li>Acesso rápido aos links de tutoriais, comunidade e suporte.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 15/08: Alien v1.1 -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-alien">ALIEN</span></div>
+                    <div><span class="badge-status status-update">UPDATE</span></div>
+                    <div class="update-date">15/08/2026</div>
+                    <div class="update-title">Alien Assistant v1.1: Auto-Refill, Auto Shift e Mira Circular</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        Expansão do conjunto de recursos de automação externa:
+                    </p>
+                    <ul>
+                        <li><strong>Auto-Refill Safe Mode:</strong> Abastecimento e consumo contínuo de potes direto do inventário.</li>
+                        <li><strong>Mira Circular 360°:</strong> Área ajustável para busca e mira ao redor do personagem.</li>
+                        <li><strong>Auto Shift:</strong> Suporte integrado para ataques travados.</li>
+                        <li>Recalibração geral de tempos e sensibilidade de resposta.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 10/08: Launcher v1.0 BETA -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-launcher">LAUNCHER</span></div>
+                    <div><span class="badge-status status-teste">TESTE</span></div>
+                    <div class="update-date">10/08/2026</div>
+                    <div class="update-title">Launcher v1.0 BETA: Sistema Básico de Auto-Update</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        Primeira versão do inicializador de testes:
+                    </p>
+                    <ul>
+                        <li>Estrutura base para verificação remota de arquivos e download de atualizações.</li>
+                        <li>Inicialização simplificada dos módulos locais do assistente.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 05/08: Alien 1.0 BETA -->
+            <div class="update-entry" onclick="toggleUpdate(this)">
+                <div class="update-summary">
+                    <div><span class="badge-prod prod-alien">ALIEN</span></div>
+                    <div><span class="badge-status status-teste">TESTE</span></div>
+                    <div class="update-date">05/08/2026</div>
+                    <div class="update-title">Alien Assistant 1.0 BETA: Início dos Testes Internos</div>
+                    <div class="update-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="update-detail">
+                    <p>
+                        Compilação de estreia do assistente em ambiente de testes:
+                    </p>
+                    <ul>
+                        <li><strong>AutoPot Básico:</strong> Monitoramento e acionamento configurável por percentual de vida/mana/estamina.</li>
+                        <li><strong>AutoClicker Básico:</strong> Disparos contínuos para botão direito e esquerdo.</li>
+                        <li>Operação externa sem interferência em arquivos de aplicação.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script do Menu Mobile -->
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function toggleUpdate(element) {
+            element.classList.toggle('open');
+        }
+    </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6a8e80e77f08c0344498aca5/1k0uaf2bu';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+
+    function abrirSuporte() {
+        if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+            Tawk_API.maximize();
+        }
+    }
+    </script>
+    <!--End of Tawk.to Script-->
+</body>
+</html>

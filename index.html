@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AvaLab | Software & Inovação Tecnológica</title>
+
+    <!-- ÍCONE NA ABA DO NAVEGADOR (.ICO) -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- PRÉVIA DO LINK (WhatsApp, Discord, Redes Sociais) -->
+    <meta property="og:site_name" content="AvaLab">
+    <meta property="og:title" content="AvaLab | Software & Inovação Tecnológica">
+    <meta property="og:description" content="Engenharia de Software, Acessibilidade e Automação de alta performance.">
+    <meta property="og:url" content="https://avalab.work/">
+    <meta property="og:image" content="https://avalab.work/favicon.ico">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos do Menu Responsivo */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(10, 15, 22, 0.95);
+            border-bottom: 1px solid #243b53;
+            position: relative;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #00e5ff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsividade para Celulares */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 15, 22, 0.98);
+                border-bottom: 1px solid #243b53;
+                padding: 20px 0;
+                gap: 16px;
+                text-align: center;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+                z-index: 1000;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        .highlights-section {
+            padding: 40px 8%;
+            max-width: 1100px;
+            margin: auto;
+            text-align: left;
+        }
+        .highlights-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #243b53;
+            padding-bottom: 12px;
+        }
+        .highlights-header h2 {
+            margin: 0;
+            color: #00e5ff;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-view-all {
+            color: #00e5ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .btn-view-all:hover {
+            color: #00ff7f;
+        }
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
+        }
+        .highlight-card {
+            background: rgba(15, 23, 32, 0.85);
+            border: 1px solid #243b53;
+            border-radius: 8px;
+            padding: 18px;
+        }
+        .badge {
+            font-size: 0.72rem;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .badge-update { background: #00ff7f; color: #000; }
+        .badge-launch { background: #00e5ff; color: #000; }
+        .badge-dev    { background: #ffd600; color: #000; }
+        
+        .highlight-card h4 {
+            margin: 0 0 6px 0;
+            color: #ffffff;
+            font-size: 1.05rem;
+        }
+        .highlight-date {
+            font-size: 0.78rem;
+            color: #8da0b3;
+            margin-bottom: 10px;
+        }
+        .highlight-card p {
+            margin: 0;
+            font-size: 0.88rem;
+            color: #b0c4de;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-text">Ava<span>Lab</span></div>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav class="nav-links" id="navLinks">
+            <a href="#apps" style="color:white; text-decoration:none;" onclick="toggleMenu()">Soluções</a>
+            <a href="updates.html" style="color:white; text-decoration:none;">Notícias & Updates</a>
+            <!-- Botão do YouTube -->
+            <a href="https://www.youtube.com/@AvaLabSoft" target="_blank" style="color:#ff3355; text-decoration:none;">
+                <i class="fa-brands fa-youtube"></i> YouTube
+            </a>
+            <!-- Botão do Discord -->
+            <a href="https://discord.gg/MEAJnDCHj" target="_blank" style="color:#5865F2; text-decoration:none;">
+                <i class="fa-brands fa-discord"></i> Comunidade
+            </a>
+            <!-- Atendimento Online -->
+            <a href="javascript:void(0)" onclick="abrirSuporte(); toggleMenu();" style="color:var(--cyan-accent, #00e5ff); text-decoration:none; cursor:pointer;">
+                <i class="fa-solid fa-headset"></i> Atendimento Online
+            </a>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Soluções inteligentes para alta performance</h1>
+        <p>AvaLab: Engenharia de Software, Acessibilidade e Automação.</p>
+    </section>
+
+    <!-- Grade de Soluções -->
+    <section id="apps" class="products-grid">
+        <div class="card">
+            <h3 style="color: #00ff7f;"><i class="fa-solid fa-robot"></i> Alien Assistant</h3>
+            <p>O utilitário definitivo para automação de rotinas, ergonomia e produtividade operacional de alto desempenho.</p>
+            <a href="alien.html" class="btn">Saiba Mais</a>
+        </div>
+        <div class="card">
+            <h3 style="color: #ff3b30;"><i class="fa-solid fa-fire"></i> Predator Assistant</h3>
+            <p>Edição de elite com emulação física via hardware dedicado AvaLab. Máxima segurança e proteção não invasiva.</p>
+            <a href="predator.html" class="btn">Saiba Mais</a>
+        </div>
+        <div class="card">
+            <h3 style="color: #ffd600;"><i class="fa-solid fa-stopwatch"></i> Cronômetro VZ</h3>
+            <p>Ferramenta de alta precisão para cronoanálise e estudo de tempos e métodos industriais.</p>
+            <a href="#" class="btn" style="background:#243b53; color:#8da0b3; cursor:not-allowed;">Em Breve</a>
+        </div>
+        <div class="card">
+            <h3><i class="fa-solid fa-shield-halved"></i> Projeto Oculto</h3>
+            <p>Nova tecnologia em desenvolvimento para o ecossistema AvaLab.</p>
+            <a href="#" class="btn" style="background:#243b53; color:#8da0b3; cursor:not-allowed;">Em Breve</a>
+        </div>
+    </section>
+
+    <!-- Seção Destaques -->
+    <section class="highlights-section">
+        <div class="highlights-header">
+            <h2><i class="fa-solid fa-bolt"></i> Destaques Recentes</h2>
+            <a href="updates.html" class="btn-view-all">Ver Histórico Completo <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <span class="badge badge-update">Update</span>
+                <h4>Launcher v1.3 Disponível</h4>
+                <div class="highlight-date">24 de Agosto de 2026</div>
+                <p>Central de comando atualizada com gerenciador nativo de licenças e download automatizado.</p>
+            </div>
+
+            <div class="highlight-card">
+                <span class="badge badge-launch">Lançamento</span>
+                <h4>Predator Hardware Edition</h4>
+                <div class="highlight-date">23 de Agosto de 2026</div>
+                <p>PredatorAssistant tem as mesmas funções de AlienAssistant via hardware usb dedicado AvaLab para máxima proteção não invasiva.</p>
+            </div>
+
+            <div class="highlight-card">
+                <span class="badge badge-dev">Recurso Beta</span>
+                <h4>Auto-Loot com Ajuste de Raio</h4>
+                <div class="highlight-date">20 de Agosto de 2026</div>
+                <p>Coleta inteligente de recursos com pausa e retomada de combate sincronizadas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script do Menu Mobile -->
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6a8e80e77f08c0344498aca5/1k0uaf2bu';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+
+    function abrirSuporte() {
+        if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+            Tawk_API.maximize();
+        }
+    }
+    </script>
+    <!--End of Tawk.to Script-->
+</body>
+</html>

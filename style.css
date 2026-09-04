@@ -1,0 +1,117 @@
+:root {
+    --bg-dark: #070b12;
+    --bg-card: rgba(15, 23, 42, 0.75);
+    --border-color: rgba(56, 189, 248, 0.15);
+    --primary-blue: #0284c7;
+    --cyan-accent: #00e5ff;
+    --alien-green: #00ff7f;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(7, 11, 18, 0.85);
+}
+
+.logo-text { 
+    font-family: 'Space Grotesk', sans-serif; 
+    font-size: 1.5rem; 
+    font-weight: 700; 
+    color: #fff; 
+}
+.logo-text span { 
+    color: var(--cyan-accent); 
+}
+
+.hero { 
+    padding: 80px 20px; 
+    text-align: center; 
+}
+.hero h1 { 
+    font-size: 2.5rem; 
+    margin-bottom: 10px; 
+}
+
+/* ==========================================
+   GRID E CARDS DA PÁGINA INICIAL (INDEX)
+   ========================================== */
+.products-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+    gap: 20px; 
+    padding: 20px 8%; 
+    align-items: stretch;
+}
+
+.products-grid .card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.products-grid .card p {
+    flex-grow: 1;
+    margin-bottom: 24px;
+}
+
+.products-grid .card .btn {
+    margin-top: auto;
+}
+
+/* ==========================================
+   ESTILO GERAL DO CARD (PÁGINAS INTERNAS & GLOBAL)
+   ========================================== */
+.card { 
+    background: var(--bg-card); 
+    border: 1px solid var(--border-color); 
+    padding: 30px; 
+    border-radius: 15px; 
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Container do Vídeo Responsivo */
+.card div[style*="aspect-ratio"] {
+    width: 100% !important;
+}
+
+.btn { 
+    display: inline-block; 
+    padding: 10px 24px; 
+    background: var(--cyan-accent); 
+    color: #000; 
+    border-radius: 5px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover { 
+    background: #00b8cc; 
+    transform: translateY(-2px);
+}

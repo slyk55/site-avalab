@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alien Assistant | AvaLab</title>
+
+    <!-- ÍCONE NA ABA DO NAVEGADOR (.ICO) -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- PRÉVIA DO LINK (WhatsApp, Discord, Redes Sociais) -->
+    <meta property="og:site_name" content="AvaLab">
+    <meta property="og:title" content="Alien Assistant | AvaLab">
+    <meta property="og:description" content="O utilitário definitivo de automação de interface, ergonomia e produtividade operacional de alto desempenho.">
+    <meta property="og:url" content="https://avalab.work/alien.html">
+    <meta property="og:image" content="https://avalab.work/favicon.ico">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos do Menu Responsivo */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(10, 15, 22, 0.95);
+            border-bottom: 1px solid #243b53;
+            position: relative;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #00e5ff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsividade para Celulares */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 15, 22, 0.98);
+                border-bottom: 1px solid #243b53;
+                padding: 20px 0;
+                gap: 16px;
+                text-align: center;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+                z-index: 1000;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        .terms-container {
+            text-align: left;
+            font-size: 0.88rem;
+            color: #b0c4de;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+        .terms-container h4 {
+            color: #ffd600;
+            margin: 14px 0 4px 0;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .terms-container ul {
+            padding-left: 20px;
+            margin: 6px 0;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 15px;
+        }
+        .feature-item {
+            background: rgba(15, 23, 32, 0.7);
+            border: 1px solid #243b53;
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .feature-item .title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+        .feature-item .title i {
+            color: #00ff7f;
+        }
+        .feature-item .desc {
+            font-size: 0.85rem;
+            color: #8da0b3;
+            line-height: 1.45;
+        }
+        .badge-beta {
+            background: #ffd600;
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-text">Ava<span>Lab</span></div>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html" style="color:white; text-decoration:none;" onclick="toggleMenu()"><i class="fa-solid fa-arrow-left"></i> Voltar para Home</a>
+            <a href="https://www.youtube.com/@AvaLabSoft" target="_blank" style="color:#ff3355; text-decoration:none;">
+                <i class="fa-brands fa-youtube"></i> YouTube
+            </a>
+            <a href="https://discord.gg/MEAJnDCHj" target="_blank" style="color:#5865F2; text-decoration:none;">
+                <i class="fa-brands fa-discord"></i> Comunidade
+            </a>
+            <a href="javascript:void(0)" onclick="abrirSuporte(); toggleMenu();" style="color:var(--cyan-accent, #00e5ff); text-decoration:none; cursor:pointer;">
+                <i class="fa-solid fa-headset"></i> Atendimento Online
+            </a>
+        </nav>
+    </header>
+
+    <main style="padding: 40px 8%; max-width: 960px; margin: auto;">
+        <h1 style="color: #00ff7f; margin-bottom: 6px;"><i class="fa-solid fa-robot"></i> Alien Assistant</h1>
+        <p style="color: var(--text-muted, #8da0b3); margin-bottom: 30px; font-size: 1.05rem;">
+            O utilitário definitivo de automação de interface, ergonomia e produtividade operacional de alto desempenho.
+        </p>
+
+        <!-- Tutorial em Vídeo -->
+        <section class="card" style="margin-bottom: 30px;">
+            <h3 style="display: flex; align-items: center; gap: 8px;"><i class="fa-brands fa-youtube" style="color: #ff3355;"></i> Tutorial em Vídeo Oficial</h3>
+            <div style="aspect-ratio: 16/9; background: #000; margin-top: 15px; display: flex; align-items: center; justify-content: center; border-radius: 10px; overflow: hidden; border: 1px solid #243b53;">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/WHCgKn-KL6g" title="Alien Assistant Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- Funcionalidades & Recursos -->
+        <section class="card" style="margin-bottom: 30px; text-align: left;">
+            <h3 style="color: #00e5ff;"><i class="fa-solid fa-microchip"></i> Recursos e Funcionalidades</h3>
+            
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-shield-halved"></i> Máxima Discrição e Integridade</div>
+                    <div class="desc">Execução totalmente autônoma e externa, interagindo com o programa alvo através de comandos de entrada sem adulterar arquivos do sistema ou da aplicação.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-heart-pulse"></i> Gestão de Sobrevivência (AutoPot)</div>
+                    <div class="desc">Monitoramento contínuo com reação instantânea para manter HP, Stamina e Mana nos percentuais escolhidos.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-arrows-rotate"></i> Autonomia de Inventário (Auto-Refill)</div>
+                    <div class="desc">Reposição e abastecimento inteligente de consumíveis direto do inventário, garantindo longas sessões de atividade contínua.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title">
+                        <i class="fa-solid fa-coins"></i> Coleta Otimizada no Chão <span class="badge-beta">BETA</span>
+                    </div>
+                    <div class="desc">Recolhimento inteligente com alcance e ritmo configuráveis. Sincroniza o momento ideal de coleta sem interromper seu fluxo de combate.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-wand-magic-sparkles"></i> Sequenciamento de Habilidades</div>
+                    <div class="desc">Configure a execução periódica de ataques e renovação automática de buffs defensivos com temporizadores independentes.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-crosshairs"></i> Target & AutoClicker 360°</div>
+                    <div class="desc">Autoclicker versátil para botão esquerdo/direito com suporte a ataque travado (Shift) e varredura circular de alvos ao redor.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-window-minimize"></i> Execução Discreta (System Tray)</div>
+                    <div class="desc">Oculte o aplicativo para a bandeja do sistema perto do relógio do Windows com um clique para manter o foco total na tela.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-floppy-disk"></i> Alternância Rápida de Perfis</div>
+                    <div class="desc">Salve múltiplos conjuntos de configurações e alterne instantaneamente entre diferentes personagens ou situações.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Termos de Uso e Responsabilidade -->
+        <section class="card" style="background: rgba(15, 23, 32, 0.95); border: 1px solid #ffd600; padding: 24px; border-radius: 10px; margin-bottom: 40px;">
+            <h3 style="color: #ffd600; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-triangle-exclamation"></i> Termos de Uso, Licença e Isenção de Responsabilidade
+            </h3>
+            
+            <div class="terms-container">
+                <h4>1. Natureza do Software e Finalidade</h4>
+                <p>O Alien / Predator Assistant é um utilitário independente e genérico de automação de interface, acessibilidade e ergonomia operacional para o sistema operacional Windows. O software atua exclusivamente a nível de usuário e/ou emulação periférica via hardware/software (HID - mouse e teclado), realizando ações pré-programadas de entrada. O software <strong>NÃO</strong> é um arquivo executável modificado, <strong>NÃO</strong> realiza injeção de código dinâmico (DLL Injection), <strong>NÃO</strong> faz leitura, escrita ou adulteração de memória RAM de processos terceiros (Memory Patching), <strong>NÃO</strong> intercepta nem altera pacotes de rede (Packet Injection/Sniffing) e <strong>NÃO</strong> modifica binários, bibliotecas ou arquivos de instalação de qualquer aplicação ou jogo.</p>
+
+                <h4>2. Destinação, Compatibilidade e Responsabilidade do Usuário</h4>
+                <p>Este utilitário foi projetado de forma neutra e universal, podendo ser utilizado em tarefas repetitivas, simulações laboratoriais, acessibilidade para portadores de limitações motoras ou em aplicações e jogos cujas diretrizes e Termos de Serviço (ToS/EULA) permitam expressamente ou tolerem o uso de automações, macros e dispositivos auxiliares. É de exclusiva obrigação do <strong>USUÁRIO</strong> verificar, compreender e respeitar as regras do ambiente, software ou plataforma onde decidir parametrizar e executar esta ferramenta.</p>
+
+                <h4>3. Desvinculação e Propriedade Intelectual de Terceiros</h4>
+                <p>Os desenvolvedores, distribuidores e a <strong>AvaLab</strong> declaram expressamente que este software <strong>NÃO</strong> possui qualquer vínculo comercial, endosso, associação, filiação ou patrocínio com desenvolvedoras ou distribuidoras de jogos eletrônicos. Quaisquer marcas registradas, nomes de jogos, termos proprietários ou logotipos pertencem estritamente aos seus respectivos detentores de direitos. A menção, divulgação ou parametrização deste utilitário para títulos específicos por parte da comunidade de usuários é de inteira iniciativa dos mesmos, não refletindo orientação oficial ou destinação exclusiva do software.</p>
+
+                <h4>4. Isenção Total e Irrestrita de Responsabilidade</h4>
+                <p>A instalação, configuração, taxa de repetição de cliques e o ambiente de execução deste utilitário são de inteira e exclusiva responsabilidade do usuário. Os desenvolvedores e distribuidores <strong>NÃO</strong> se responsabilizam por:</p>
+                <ul>
+                    <li>Advertências, suspensões temporárias, punições disciplinares ou bloqueios definitivos (bans) decorrentes do uso da ferramenta em ambientes com regras restritivas;</li>
+                    <li>Denúncias (reports), análises de registros internos ou checagens de moderação de plataformas terceiras;</li>
+                    <li>Quaisquer prejuízos diretos, indiretos, perdas de itens, pontuações, contas ou danos de qualquer natureza decorrentes do uso inadequado do utilitário;</li>
+                    <li>Alterações ou atualizações feitas por plataformas terceiras que possam vir a limitar a eficácia do software.</li>
+                </ul>
+
+                <h4>5. Fornecimento "No Estado em que se Encontra" (As-Is)</h4>
+                <p>O software é disponibilizado "no estado em que se encontra" (as-is), sem garantias implícitas ou explícitas de compatibilidade perpétua ou infalibilidade contra sistemas anti-cheat ou bloqueios futuros criados por terceiros.</p>
+
+                <h4>6. Aceite das Condições e Acordo Vinculante</h4>
+                <p>Ao baixar, instalar, ativar ou utilizar este software, você confirma que leu, compreendeu e aceitou integralmente todas as cláusulas deste Termo, assumindo total responsabilidade legal, operacional e ética pelo uso do utilitário e isentando os desenvolvedores de qualquer reivindicação judicial ou extrajudicial.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Script do Menu Mobile -->
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6a8e80e77f08c0344498aca5/1k0uaf2bu';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+
+    // Gatilho do botão de atendimento
+    function abrirSuporte() {
+        if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+            Tawk_API.maximize();
+        }
+    }
+    </script>
+    <!--End of Tawk.to Script-->
+</body>
+</html>
