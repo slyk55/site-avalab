@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VZ FlowTime | AvaLab</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <meta property="og:site_name" content="AvaLab">
+    <meta property="og:title" content="VZ FlowTime | AvaLab">
+    <meta property="og:description" content="Plataforma de alta precisão para cronoanálise, balanceamento de linhas e padronização operacional de tempos e métodos industriais.">
+    <meta property="og:url" content="https://avalab.work/vzflowtime.html">
+    <meta property="og:image" content="https://avalab.work/favicon.ico">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos do Menu Responsivo */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(10, 15, 22, 0.95);
+            border-bottom: 1px solid #243b53;
+            position: relative;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #00e5ff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsividade para Celulares */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 15, 22, 0.98);
+                border-bottom: 1px solid #243b53;
+                padding: 20px 0;
+                gap: 16px;
+                text-align: center;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+                z-index: 1000;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+
+            .partnership-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 15px;
+        }
+        .feature-item {
+            background: rgba(15, 23, 32, 0.7);
+            border: 1px solid #243b53;
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            text-align: left;
+        }
+        .feature-item .title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+        .feature-item .title i {
+            color: #ffd600;
+        }
+        .feature-item .desc {
+            font-size: 0.85rem;
+            color: #8da0b3;
+            line-height: 1.45;
+        }
+        .badge-tag {
+            background: #00e5ff;
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 4px;
+        }
+
+        /* Seção de Parceria Estratégica */
+        .partnership-card {
+            background: rgba(15, 23, 32, 0.85);
+            border: 1px solid #243b53;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .partnership-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            margin-top: 15px;
+        }
+        .partnership-text {
+            flex: 1;
+            color: #b0c4de;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Box do Logo com máscara e cantos arredondados */
+        .partnership-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            border: 1px solid #243b53;
+            overflow: hidden; /* Corta o excesso do zoom */
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .partnership-logo:hover {
+            border-color: #ffd600;
+            box-shadow: 0 4px 18px rgba(255, 214, 0, 0.15);
+        }
+
+        /* AQUI VOCÊ CONTROLA O ZOOM DA LOGO */
+        .partnership-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transform: scale(1.3); /* <-- REGULE O ZOOM BASE AQUI (Ex: 1.25, 1.3, 1.35) */
+            transform-origin: center center;
+            transition: transform 0.25s ease;
+        }
+        .partnership-logo:hover img {
+            transform: scale(1.35); /* <-- ZOOM AO PASSAR O MOUSE (opcional) */
+        }
+
+        .btn-partner {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffd600;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            transition: color 0.2s;
+        }
+        .btn-partner:hover {
+            color: #00e5ff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-text">Ava<span>Lab</span></div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html" style="color:white; text-decoration:none;"><i class="fa-solid fa-arrow-left"></i> Voltar para Home</a>
+            <a href="https://wa.me/554788714125" target="_blank" rel="noopener noreferrer" style="color:#25D366; text-decoration:none;">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://www.youtube.com/@AvaLabSoft" target="_blank" rel="noopener noreferrer" style="color:#ff3355; text-decoration:none;">
+                <i class="fa-brands fa-youtube"></i> YouTube
+            </a>
+            <a href="https://discord.gg/MEAJnDCHj" target="_blank" rel="noopener noreferrer" style="color:#5865F2; text-decoration:none;">
+                <i class="fa-brands fa-discord"></i> Comunidade
+            </a>
+            <a href="javascript:void(0)" onclick="abrirSuporte();" style="color:var(--cyan-accent, #00e5ff); text-decoration:none; cursor:pointer;">
+                <i class="fa-solid fa-headset"></i> Atendimento Online
+            </a>
+        </nav>
+    </header>
+
+    <main style="padding: 40px 8%; max-width: 960px; margin: auto;">
+        <h1 style="color: #ffd600; margin-bottom: 6px;"><i class="fa-solid fa-stopwatch"></i> VZ FlowTime</h1>
+        <p style="color: var(--text-muted, #8da0b3); margin-bottom: 25px; font-size: 1.05rem;">
+            Plataforma de alta precisão para cronoanálise, balanceamento de linhas e padronização operacional de tempos e métodos industriais.
+        </p>
+
+        <!-- Demonstração em Vídeo Oficial -->
+        <section class="card" style="margin-bottom: 30px; border-color: #243b53;">
+            <h3 style="display: flex; align-items: center; gap: 8px; color: #ffd600;">
+                <i class="fa-brands fa-youtube" style="color: #ff3355;"></i> Demonstração em Vídeo Oficial
+            </h3>
+            <div style="aspect-ratio: 16/9; background: #000; margin-top: 15px; display: flex; align-items: center; justify-content: center; border-radius: 10px; overflow: hidden; border: 1px solid #243b53;">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SEU_VIDEO_ID" title="VZ FlowTime Demonstração" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- Recursos e Funcionalidades -->
+        <section class="card" style="margin-bottom: 30px; text-align: left; border-color: #243b53;">
+            <h3 style="color: #00e5ff; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-microchip"></i> Recursos e Engenharia de Métodos
+            </h3>
+            
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-stopwatch-20"></i> Tomada de Tempo em Alta Resolução</div>
+                    <div class="desc">Cronometragem com precisão milesimal por voltas, ciclos e operações, com controle instantâneo de pausas e medições individuais.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-sliders"></i> Avaliação de Ritmo & Fator Concessão</div>
+                    <div class="desc">Ajuste de ritmo do operador e aplicação parametrizável de concessões ergonômicas e fadiga para determinar o Tempo Normal e Tempo Padrão.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-code-compare"></i> Módulo de Análise Comparativa <span class="badge-tag">NOVO</span></div>
+                    <div class="desc">Cruzamento de dados entre maquinários e operações para comparar TMC, TP e peças por minuto, calculando a eficiência relativa instantaneamente.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-filter"></i> Seletores de Processos Inteligentes</div>
+                    <div class="desc">Filtro dinâmico por posto de trabalho, nome de máquina ou operação fabril com autocompletar e desvinculação ágil para chão de fábrica.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-file-csv"></i> Exportação Direta para CSV</div>
+                    <div class="desc">Compartilhamento ágil de relatórios estruturados para e-mail, WhatsApp ou planilhas executivas sem necessidade de conexão externa.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-database"></i> Arquitetura de Persistência Segura</div>
+                    <div class="desc">Banco de dados embarcado de alta velocidade para armazenamento integral de históricos operacionais, voltas e calibrações de postos de trabalho.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-clipboard-check"></i> Fim das Planilhas Instáveis</div>
+                    <div class="desc">Elimina anotações manuais, pranchetas físicas e erros de transcrição, padronizando a coleta de dados de ponta a ponta no setor têxtil e fabril.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="title"><i class="fa-solid fa-industry"></i> Centralização Operacional</div>
+                    <div class="desc">Ambiente único e intuitivo projetado sob medida para engenheiros de produção, analistas de processos e equipes de consultoria industrial.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parceria VZ Consultoria -->
+        <section class="partnership-card">
+            <h3 style="color: #ffd600; margin: 0 0 10px 0; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-handshake"></i> Parceria Estratégica & Desenvolvimento
+            </h3>
+            
+            <div class="partnership-content">
+                <div class="partnership-text">
+                    <p style="margin: 0 0 10px 0;">
+                        O <strong>VZ FlowTime</strong> é uma solução desenvolvida pela <strong>AvaLab</strong> em cooperação técnica e parceria estratégica com a <strong>VZ Consultoria</strong>, unindo engenharia de software de alta performance com a ampla vivência prática em tempos, métodos e consultoria fabril.
+                    </p>
+                    <a href="https://www.vzconsultoria.com" target="_blank" rel="noopener noreferrer" class="btn-partner">
+                        <i class="fa-solid fa-globe"></i> Visite o site oficial: www.vzconsultoria.com <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8rem;"></i>
+                    </a>
+                </div>
+
+                <div class="partnership-logo">
+                    <a href="https://www.vzconsultoria.com" target="_blank" rel="noopener noreferrer">
+                        <img src="logo-vz3.png" alt="VZ Consultoria e Treinamento">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Script do Menu Mobile -->
+    <script>
+        const navLinks = document.getElementById('navLinks');
+        const menuToggle = document.getElementById('menuToggle');
+        const headerEl = document.querySelector('header');
+
+        function toggleMenu() {
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            navLinks.classList.remove('active');
+        }
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                closeMenu();
+            });
+        });
+
+        function handleOutsideClick(e) {
+            if (navLinks.classList.contains('active') && !headerEl.contains(e.target)) {
+                closeMenu();
+            }
+        }
+
+        document.addEventListener('click', handleOutsideClick);
+        document.addEventListener('touchstart', handleOutsideClick, { passive: true });
+    </script>
+
+    <!-- Start of Tawk.to Script -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function(){
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6a8e80e77f08c0344498aca5/1k0uaf2bu';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+
+        function abrirSuporte() {
+            if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+                Tawk_API.maximize();
+            }
+        }
+    </script>
+    <!-- End of Tawk.to Script -->
+</body>
+</html>

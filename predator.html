@@ -74,7 +74,7 @@
             border-left: 5px solid #ff3b30;
             border-radius: 8px;
             padding: 16px 20px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
             gap: 16px;
@@ -95,6 +95,70 @@
             font-size: 0.9rem;
             line-height: 1.45;
         }
+        .pricing-card {
+            background: rgba(46, 13, 13, 0.4);
+            border: 1px solid #5c1d24;
+            border-radius: 10px;
+            padding: 22px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .pricing-card .title {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pricing-card .desc {
+            color: #8da0b3;
+            font-size: 0.9rem;
+            line-height: 1.45;
+        }
+        .pricing-card .price {
+            color: #ffd600;
+            font-size: 1.15rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .pricing-card .info-note {
+            color: #ff3b30;
+            font-size: 0.88rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .pricing-card .sales-rule {
+            color: #b0c4de;
+            font-size: 0.85rem;
+            background: rgba(255, 59, 48, 0.05);
+            border-left: 3px solid #ff3b30;
+            padding: 8px 12px;
+            border-radius: 4px;
+            line-height: 1.4;
+        }
+        .btn-adquirir {
+            display: inline-block;
+            background: #ff3b30;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            transition: background 0.2s;
+            margin-top: 6px;
+        }
+        .btn-adquirir:hover {
+            background: #e03228;
+        }
         .terms-container {
             text-align: left;
             font-size: 0.88rem;
@@ -111,6 +175,9 @@
         }
         .terms-container ul {
             padding-left: 20px;
+            margin: 6px 0;
+        }
+        .terms-container p {
             margin: 6px 0;
         }
         .feature-grid {
@@ -173,6 +240,9 @@
         </button>
         <nav class="nav-links" id="navLinks">
             <a href="index.html" style="color:white; text-decoration:none;" onclick="toggleMenu()"><i class="fa-solid fa-arrow-left"></i> Voltar para Home</a>
+            <a href="https://wa.me/554788714125" target="_blank" style="color:#25D366; text-decoration:none;">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
             <a href="https://www.youtube.com/@AvaLabSoft" target="_blank" style="color:#ff3355; text-decoration:none;">
                 <i class="fa-brands fa-youtube"></i> YouTube
             </a>
@@ -190,14 +260,6 @@
         <p style="color: var(--text-muted, #8da0b3); margin-bottom: 25px; font-size: 1.05rem;">
             A edição de elite de alto desempenho: máxima segurança, estabilidade superior e operação totalmente não invasiva.
         </p>
-
-        <div class="hardware-callout">
-            <i class="fa-solid fa-microchip"></i>
-            <div class="text">
-                <h4>Requisito de Operação: Hardware Físico Exclusivo AvaLab</h4>
-                <p>O <strong>Predator Assistant</strong> depende obrigatoriamente de um hardware externo dedicado, <strong>adquirido exclusivamente conosco na AvaLab</strong>. Essa tecnologia torna a ferramenta infinitamente mais segura, discreta e totalmente não invasiva.</p>
-            </div>
-        </div>
 
         <section class="card" style="margin-bottom: 30px; border-color: #5c1d24;">
             <h3 style="display: flex; align-items: center; gap: 8px; color: #ff3b30;"><i class="fa-brands fa-youtube"></i> Demonstração em Vídeo Oficial</h3>
@@ -261,6 +323,45 @@
             </div>
         </section>
 
+        <!-- Seção de Valores / Planos com 3 dias de teste -->
+        <section class="card" style="margin-bottom: 30px; text-align: left; border-color: #5c1d24;">
+            <h3 style="color: #ff3b30; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-tags"></i> Investimento e Planos
+            </h3>
+            
+            <div style="margin-top: 15px;">
+                <div class="pricing-card">
+                    <div class="title">
+                        <i class="fa-solid fa-gem" style="color: #ff3b30;"></i> PREDATOR ASSISTANT (Hardware + Software)
+                    </div>
+                    <div class="desc">
+                        Máxima segurança e desempenho com execução totalmente externa e autônoma via hardware USB dedicado.
+                    </div>
+                    <div class="price">
+                        <i class="fa-solid fa-sack-dollar"></i> Valor: R$ 79,90 / mês + R$ 120,00 da placa (Aquisição única)
+                    </div>
+                    <div class="info-note">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Você pode solicitar até 3 dias de teste gratuito via atendimento.
+                    </div>
+                    <div class="sales-rule">
+                        <i class="fa-solid fa-circle-info" style="color: #00e5ff;"></i> Dúvidas técnicas e comerciais via <strong>WhatsApp</strong>, <strong>Discord</strong> ou <strong>Chat Online</strong>. As vendas e aquisições são realizadas <strong>estritamente pelo chat de atendimento</strong>.
+                    </div>
+                    <a href="javascript:void(0)" onclick="abrirSuporte()" class="btn-adquirir">
+                        <i class="fa-solid fa-headset"></i> Solicitar Teste / Chat Online
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aviso de Hardware -->
+        <div class="hardware-callout">
+            <i class="fa-solid fa-microchip"></i>
+            <div class="text">
+                <h4>Requisito de Operação: Hardware Físico Exclusivo AvaLab</h4>
+                <p>O <strong>Predator Assistant</strong> depende obrigatoriamente de um hardware externo dedicado, <strong>adquirido exclusivamente conosco na AvaLab</strong>. Essa tecnologia torna a ferramenta infinitamente mais segura, discreta e totalmente não invasiva.</p>
+            </div>
+        </div>
+
         <section class="card" style="background: rgba(15, 23, 32, 0.95); border: 1px solid #ffd600; padding: 24px; border-radius: 10px; margin-bottom: 40px;">
             <h3 style="color: #ffd600; display: flex; align-items: center; gap: 8px;">
                 <i class="fa-solid fa-triangle-exclamation"></i> Termos de Uso, Licença e Isenção de Responsabilidade
@@ -273,22 +374,40 @@
                 <h4>2. Destinação, Compatibilidade e Responsabilidade do Usuário</h4>
                 <p>Este utilitário foi projetado de forma neutra e universal, podendo ser utilizado em tarefas repetitivas, simulações laboratoriais, acessibilidade para portadores de limitações motoras ou em aplicações e jogos cujas diretrizes e Termos de Serviço (ToS/EULA) permitam expressamente ou tolerem o uso de automações, macros e dispositivos auxiliares. É de exclusiva obrigação do <strong>USUÁRIO</strong> verificar, compreender e respeitar as regras do ambiente, software ou plataforma onde decidir parametrizar e executar esta ferramenta.</p>
 
-                <h4>3. Desvinculação e Propriedade Intelectual de Terceiros</h4>
+                <h4>3. Limitações e Falhas de Execução</h4>
+                <p>Por se tratar de uma ferramenta de automação externa, baseada em reconhecimento visual e simulação periférica, podem ocorrer eventuais falhas operacionais, tais como atrasos, perdas de leitura de pixels ou interrupções no acionamento de poções, cliques ou recursos automatizados. O usuário compreende e aceita que o software pode sofrer instabilidades dependendo das condições do seu computador, oscilações de desempenho (como quedas de FPS) ou variações gráficas na tela, sendo de total responsabilidade do operador o acompanhamento e a supervisão constante do uso da ferramenta.</p>
+
+                <h4>4. Desvinculação e Propriedade Intelectual de Terceiros</h4>
                 <p>Os desenvolvedores, distribuidores e a <strong>AvaLab</strong> declaram expressamente que este software <strong>NÃO</strong> possui qualquer vínculo comercial, endosso, associação, filiação ou patrocínio com desenvolvedoras ou distribuidoras de jogos eletrônicos. Quaisquer marcas registradas, nomes de jogos, termos proprietários ou logotipos pertencem estritamente aos seus respectivos detentores de direitos. A menção, divulgação ou parametrização deste utilitário para títulos específicos por parte da comunidade de usuários é de inteira iniciativa dos mesmos, não refletindo orientação oficial ou destinação exclusiva do software.</p>
 
-                <h4>4. Isenção Total e Irrestrita de Responsabilidade</h4>
+                <h4>5. Isenção Total e Irrestrita de Responsabilidade</h4>
                 <p>A instalação, configuração, taxa de repetição de cliques e o ambiente de execução deste utilitário são de inteira e exclusiva responsabilidade do usuário. Os desenvolvedores e distribuidores <strong>NÃO</strong> se responsabilizam por:</p>
                 <ul>
-                    <li>Advertências, suspensões temporárias, punições disciplinares ou bloqueios definitivos (bans) decorrentes do uso da ferramenta em ambientes com regras restritivas;</li>
-                    <li>Denúncias (reports), análises de registros internos ou checagens de moderação de plataformas terceiras;</li>
-                    <li>Quaisquer prejuízos diretos, indiretos, perdas de itens, pontuações, contas ou danos de qualquer natureza decorrentes do uso inadequado do utilitário;</li>
-                    <li>Alterações ou atualizações feitas por plataformas terceiras que possam vir a limitar a eficácia do software.</li>
+                    <li><strong>a)</strong> Advertências, suspensões temporárias, punições disciplinares ou bloqueios definitivos (bans) decorrentes do uso da ferramenta em ambientes com regras restritivas;</li>
+                    <li><strong>b)</strong> Denúncias (reports), análises de registros internos ou checagens de moderação de terceiros;</li>
+                    <li><strong>c)</strong> Quaisquer prejuízos diretos, indiretos, perdas de itens, pontuações, contas ou danos de qualquer natureza decorrentes do uso inadequado ou de falhas operacionais do utilitário;</li>
+                    <li><strong>d)</strong> Alterações ou atualizações feitas por plataformas terceiras que possam vir a limitar a eficácia do software.</li>
                 </ul>
 
-                <h4>5. Fornecimento "No Estado em que se Encontra" (As-Is)</h4>
+                <h4>6. Fornecimento "No Estado em que se Encontra" (As-Is)</h4>
                 <p>O software é disponibilizado "no estado em que se encontra" (as-is), sem garantias implícitas ou explícitas de compatibilidade perpétua ou infalibilidade contra sistemas anti-cheat ou bloqueios futuros criados por terceiros.</p>
 
-                <h4>6. Aceite das Condições e Acordo Vinculante</h4>
+                <h4>7. Limitação de Indenização</h4>
+                <p>Caso os desenvolvedores ou a AvaLab sejam responsabilizados judicialmente por qualquer dano relacionado ao uso do software, a indenização máxima total devida ao usuário estará estritamente limitada ao valor efetivamente pago pelo usuário pela licença de uso nos últimos 30 (trinta) dias, ou a zero caso o software esteja em fase de testes (Beta) ou seja gratuito.</p>
+
+                <h4>8. Proibição de Engenharia Reversa</h4>
+                <p>É expressamente proibida a descompilação, engenharia reversa, desmontagem, tentativa de extração do código-fonte, adulteração do sistema de licenciamento (HWID) ou redistribuição não autorizada do software por parte do usuário.</p>
+
+                <h4>9. Alteração dos Termos</h4>
+                <p>A AvaLab reserva-se o direito de modificar, atualizar ou revisar estes Termos de Uso a qualquer momento. O uso contínuo do utilitário após a publicação das alterações constitui a aceitação automática das novas condições.</p>
+
+                <h4>10. Modificações e Alteração de Recursos</h4>
+                <p>Os desenvolvedores e a AvaLab reservam-se o direito absoluto de, a qualquer momento e sem aviso prévio, implementar novas funções, alterar, modificar, suspender ou excluir recursos, ferramentas ou interfaces presentes no utilitário. O usuário concorda que o software é dinâmico e que atualizações podem modificar o comportamento operacional das ferramentas, não cabendo qualquer direito a reembolso, indenização ou reclamação devido à adição, remoção ou alteração de funcionalidades.</p>
+
+                <h4>11. Proteção de Hardware, Firmware e Intervenção do Usuário</h4>
+                <p>Caso o utilitário seja utilizado em conjunto com dispositivo externo dedicado (hardware USB/HID, comercializado separadamente e essencial para versões específicas como o Predator), o usuário declara estar ciente de que o firmware, o código e os dados embarcados são protegidos contra cópia e engenharia reversa. Qualquer tentativa de resetar, atualizar por conta própria, regravar, apagar o firmware ou forçar o modo de recuperação do dispositivo resultará na perda irreversível da programação interna e do funcionamento do acessório. A garantia do hardware limita-se estritamente ao prazo legal obrigatório para defeitos de fabricação de origem, sendo expressamente excluída qualquer responsabilidade, troca ou suporte técnico gratuito em caso de falhas decorrentes de mau uso, regravação indevida ou intervenção física e de software realizada pelo usuário.</p>
+
+                <h4>12. Aceite das Condições e Acordo Vinculante</h4>
                 <p>Ao adquirir o hardware, baixar, instalar, ativar ou utilizar este software, você confirma que leu, compreendeu e aceitou integralmente todas as cláusulas deste Termo, assumindo total responsabilidade legal, operacional e ética pelo uso do utilitário e isentando os desenvolvedores de qualquer reivindicação judicial ou extrajudicial.</p>
             </div>
         </section>

@@ -20,6 +20,7 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* Estilos do Menu Responsivo */
         header {
@@ -145,27 +146,39 @@
             color: #b0c4de;
             line-height: 1.5;
         }
+
+        /* Classe para desativar botões sem quebrar estilos */
+        .btn-disabled {
+            background: #243b53 !important;
+            color: #8da0b3 !important;
+            cursor: not-allowed !important;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="logo-text">Ava<span>Lab</span></div>
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir Menu">
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir Menu">
             <i class="fa-solid fa-bars"></i>
         </button>
         <nav class="nav-links" id="navLinks">
-            <a href="#apps" style="color:white; text-decoration:none;" onclick="toggleMenu()">Soluções</a>
+            <a href="#apps" style="color:white; text-decoration:none;">Soluções</a>
             <a href="updates.html" style="color:white; text-decoration:none;">Notícias & Updates</a>
+            <!-- Botão do WhatsApp (verifique se necessita do 9º dígito: 5547988714125) -->
+            <a href="https://wa.me/554788714125" target="_blank" rel="noopener noreferrer" style="color:#25D366; text-decoration:none;">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
             <!-- Botão do YouTube -->
-            <a href="https://www.youtube.com/@AvaLabSoft" target="_blank" style="color:#ff3355; text-decoration:none;">
+            <a href="https://www.youtube.com/@AvaLabSoft" target="_blank" rel="noopener noreferrer" style="color:#ff3355; text-decoration:none;">
                 <i class="fa-brands fa-youtube"></i> YouTube
             </a>
             <!-- Botão do Discord -->
-            <a href="https://discord.gg/MEAJnDCHj" target="_blank" style="color:#5865F2; text-decoration:none;">
+            <a href="https://discord.gg/MEAJnDCHj" target="_blank" rel="noopener noreferrer" style="color:#5865F2; text-decoration:none;">
                 <i class="fa-brands fa-discord"></i> Comunidade
             </a>
             <!-- Atendimento Online -->
-            <a href="javascript:void(0)" onclick="abrirSuporte(); toggleMenu();" style="color:var(--cyan-accent, #00e5ff); text-decoration:none; cursor:pointer;">
+            <a href="javascript:void(0)" onclick="abrirSuporte();" style="color:var(--cyan-accent, #00e5ff); text-decoration:none; cursor:pointer;">
                 <i class="fa-solid fa-headset"></i> Atendimento Online
             </a>
         </nav>
@@ -189,14 +202,14 @@
             <a href="predator.html" class="btn">Saiba Mais</a>
         </div>
         <div class="card">
-            <h3 style="color: #ffd600;"><i class="fa-solid fa-stopwatch"></i> Cronômetro VZ</h3>
-            <p>Ferramenta de alta precisão para cronoanálise e estudo de tempos e métodos industriais.</p>
-            <a href="#" class="btn" style="background:#243b53; color:#8da0b3; cursor:not-allowed;">Em Breve</a>
+            <h3 style="color: #ffd600;"><i class="fa-solid fa-stopwatch"></i> VZ FlowTime</h3>
+            <p>Plataforma de alta precisão para cronoanálise, balanceamento de linhas e padronização operacional de tempos e métodos industriais.</p>
+            <a href="vzflowtime.html" class="btn">Saiba Mais</a>
         </div>
         <div class="card">
             <h3><i class="fa-solid fa-shield-halved"></i> Projeto Oculto</h3>
             <p>Nova tecnologia em desenvolvimento para o ecossistema AvaLab.</p>
-            <a href="#" class="btn" style="background:#243b53; color:#8da0b3; cursor:not-allowed;">Em Breve</a>
+            <a href="javascript:void(0)" class="btn btn-disabled">Em Breve</a>
         </div>
     </section>
 
@@ -209,10 +222,10 @@
 
         <div class="highlights-grid">
             <div class="highlight-card">
-                <span class="badge badge-update">Update</span>
-                <h4>Launcher v1.3 Disponível</h4>
-                <div class="highlight-date">24 de Agosto de 2026</div>
-                <p>Central de comando atualizada com gerenciador nativo de licenças e download automatizado.</p>
+                <span class="badge badge-launch">Lançamento</span>
+                <h4>Beta do Alien Assistant</h4>
+                <div class="highlight-date">04 de Setembro de 2026</div>
+                <p>Início dos testes beta até 18/09. Participantes ativos ganham 30 dias de chave gratuita no lançamento oficial.</p>
             </div>
 
             <div class="highlight-card">
@@ -223,40 +236,70 @@
             </div>
 
             <div class="highlight-card">
-                <span class="badge badge-dev">Recurso Beta</span>
-                <h4>Auto-Loot com Ajuste de Raio</h4>
-                <div class="highlight-date">20 de Agosto de 2026</div>
-                <p>Coleta inteligente de recursos com pausa e retomada de combate sincronizadas.</p>
+                <span class="badge badge-dev">Valores</span>
+                <h4>Valores Oficiais Divulgados</h4>
+                <div class="highlight-date">09 de Setembro de 2026</div>
+                <p>Alien Assistant por R$ 39,90/mês e Predator Assistant por R$ 79,90/mês + R$ 120,00 da placa de hardware.</p>
             </div>
         </div>
     </section>
 
-    <!-- Script do Menu Mobile -->
+    <!-- Script do Menu Mobile (Garante fechamento ao tocar/clicar fora ou em itens) -->
     <script>
+        const navLinks = document.getElementById('navLinks');
+        const menuToggle = document.getElementById('menuToggle');
+        const headerEl = document.querySelector('header');
+
         function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
-    </script>
 
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6a8e80e77f08c0344498aca5/1k0uaf2bu';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-
-    function abrirSuporte() {
-        if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
-            Tawk_API.maximize();
+        function closeMenu() {
+            navLinks.classList.remove('active');
         }
-    }
+
+        // Alterna menu ao tocar/clicar no botão hambúrguer
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        // Fecha o menu ao clicar em qualquer item da navegação
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                closeMenu();
+            });
+        });
+
+        // Fecha o menu se houver clique ou toque fora do cabeçalho
+        function handleOutsideClick(e) {
+            if (navLinks.classList.contains('active') && !headerEl.contains(e.target)) {
+                closeMenu();
+            }
+        }
+
+        document.addEventListener('click', handleOutsideClick);
+        document.addEventListener('touchstart', handleOutsideClick, { passive: true });
     </script>
-    <!--End of Tawk.to Script-->
+
+    <!-- Start of Tawk.to Script -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function(){
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6a8e80e77f08c0344498aca5/1k0uaf2bu';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+
+        function abrirSuporte() {
+            if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+                Tawk_API.maximize();
+            }
+        }
+    </script>
+    <!-- End of Tawk.to Script -->
 </body>
 </html>
