@@ -199,21 +199,21 @@
 
     <header>
         <div class="logo-text">Ava<span>Lab</span></div>
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir Menu">
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir Menu">
             <i class="fa-solid fa-bars"></i>
         </button>
         <nav class="nav-links" id="navLinks">
-            <a href="index.html" style="color:white; text-decoration:none;" onclick="toggleMenu()"><i class="fa-solid fa-arrow-left"></i> Voltar para Home</a>
-            <a href="https://wa.me/554788714125" target="_blank" style="color:#25D366; text-decoration:none;">
+            <a href="index.html" style="color:white; text-decoration:none;"><i class="fa-solid fa-arrow-left"></i> Voltar para Home</a>
+            <a href="https://wa.me/554788714125" target="_blank" rel="noopener noreferrer" style="color:#25D366; text-decoration:none;">
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
             </a>
-            <a href="https://www.youtube.com/@AvaLabSoft" target="_blank" style="color:#ff3355; text-decoration:none;">
+            <a href="https://www.youtube.com/@AvaLabSoft" target="_blank" rel="noopener noreferrer" style="color:#ff3355; text-decoration:none;">
                 <i class="fa-brands fa-youtube"></i> YouTube
             </a>
-            <a href="https://discord.gg/MEAJnDCHj" target="_blank" style="color:#5865F2; text-decoration:none;">
+            <a href="https://discord.gg/MEAJnDCHj" target="_blank" rel="noopener noreferrer" style="color:#5865F2; text-decoration:none;">
                 <i class="fa-brands fa-discord"></i> Comunidade
             </a>
-            <a href="javascript:void(0)" onclick="abrirSuporte(); toggleMenu();" style="color:var(--cyan-accent, #00e5ff); text-decoration:none; cursor:pointer;">
+            <a href="javascript:void(0)" onclick="abrirSuporte();" style="color:var(--cyan-accent, #00e5ff); text-decoration:none; cursor:pointer;">
                 <i class="fa-solid fa-headset"></i> Atendimento Online
             </a>
         </nav>
@@ -364,32 +364,59 @@
         </section>
     </main>
 
-    <!-- Script do Menu Mobile -->
+    <!-- Script do Menu Mobile (com clique-fora e suporte touch) -->
     <script>
+        const navLinks = document.getElementById('navLinks');
+        const menuToggle = document.getElementById('menuToggle');
+        const headerEl = document.querySelector('header');
+
         function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
+
+        function closeMenu() {
+            navLinks.classList.remove('active');
+        }
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                closeMenu();
+            });
+        });
+
+        function handleOutsideClick(e) {
+            if (navLinks.classList.contains('active') && !headerEl.contains(e.target)) {
+                closeMenu();
+            }
+        }
+
+        document.addEventListener('click', handleOutsideClick);
+        document.addEventListener('touchstart', handleOutsideClick, { passive: true });
     </script>
 
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6a8e80e77f08c0344498aca5/1k0uaf2bu';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6a8e80e77f08c0344498aca5/1k0uaf2bu';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
 
-    // Gatilho do botão de atendimento
-    function abrirSuporte() {
-        if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
-            Tawk_API.maximize();
+        // Gatilho do botão de atendimento
+        function abrirSuporte() {
+            if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+                Tawk_API.maximize();
+            }
         }
-    }
     </script>
     <!--End of Tawk.to Script-->
 </body>
